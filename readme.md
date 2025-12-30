@@ -56,6 +56,28 @@ templates/
 ├── frontend.html
 ```
 
+<h2>🏨 Hotel Booking System – UI Preview</h2>
+
+<h3>Home Page</h3>
+<p align="center">
+  <img src="docs/images/home.png" width="900" alt="Home Page">
+</p>
+
+<h3>Search & Available Rooms</h3>
+<p align="center">
+  <img src="docs/images/search-rooms.png" width="900" alt="Available Rooms">
+</p>
+
+<h3>Booking Modal</h3>
+<p align="center">
+  <img src="docs/images/booking-modal.png" width="700" alt="Booking Modal">
+</p>
+
+<h3>My Bookings</h3>
+<p align="center">
+  <img src="docs/images/my-bookings.png" width="900" alt="My Bookings">
+</p>
+
 ---
 
 ## 🔐 Authentication Flow
