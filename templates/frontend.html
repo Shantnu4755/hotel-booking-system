@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking - Book Your Perfect Stay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-hotel me-2"></i>Hotel Booking
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#search-section">Search Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#highlights">Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#offers">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bookings-section">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link text-white" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginNavBtn">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link text-white" data-bs-toggle="modal" data-bs-target="#signupModal" id="signupNavBtn">
+                            <i class="fas fa-user-plus me-1"></i>Sign Up
+                        </button>
+                    </li>
+                    <li class="nav-item d-none" id="userNavItem">
+                        <div class="nav-link text-white">
+                            <span id="userNameNav"></span>
+                            <button class="btn btn-sm btn-outline-light ms-2" onclick="handleLogout()">
+                                <i class="fas fa-sign-out-alt me-1"></i>Logout
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="py-5 bg-body">
+        <div class="container">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-8">
+                    <h2 class="section-title">Signature Experiences</h2>
+                    <p class="section-subtitle">Inspired by grand palaces and contemporary luxury, we curate every stay with warm hospitality, fine dining, and timeless design.</p>
+                </div>
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                    <a href="#search-section" class="btn btn-warning btn-lg">
+                        <i class="fas fa-calendar-alt me-2"></i>Plan Your Stay
+                    </a>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="highlight-card h-100">
+                        <div class="highlight-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h5 class="highlight-title">Elegant Rooms &amp; Suites</h5>
+                        <p class="highlight-text">Spacious, sunlit interiors with plush bedding, curated art, and soothing palettes designed for both business and leisure stays.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="highlight-card h-100">
+                        <div class="highlight-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h5 class="highlight-title">Fine Dining &amp; Breakfast</h5>
+                        <p class="highlight-text">A gourmet spread of global and regional cuisines, crafted by our culinary team to give you a memorable dining experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="highlight-card h-100">
+                        <div class="highlight-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h5 class="highlight-title">Wellness &amp; Calm</h5>
+                        <p class="highlight-text">Unwind at the spa, take a refreshing dip, or simply relax in thoughtfully designed common spaces and lounges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Search Section -->
+    <section id="search-section" class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="search-card">
+                        <h1 class="text-center mb-4 text-white">Find Your Perfect Room</h1>
+                        <form id="searchForm" class="search-form">
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="form-label text-white">Check-in</label>
+                                    <input type="datetime-local" id="checkIn" class="form-control form-control-lg" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label text-white">Check-out</label>
+                                    <input type="datetime-local" id="checkOut" class="form-control form-control-lg" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label text-white">Booking Type</label>
+                                    <select id="bookingType" class="form-select form-select-lg">
+                                        <option value="HOURLY">Hourly</option>
+                                        <option value="DAILY" selected>Daily</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-warning btn-lg w-100">
+                                        <i class="fas fa-search me-2"></i>Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Rooms Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Available Rooms</h2>
+            <div id="roomsContainer" class="row g-4">
+                <div class="col-12 text-center text-muted">
+                    <i class="fas fa-search fa-3x mb-3"></i>
+                    <p>Search for rooms to see available options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Confirm Booking</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <input type="hidden" id="selectedRoomId">
+                        <div class="mb-3">
+                            <label class="form-label">Room</label>
+                            <input type="text" id="selectedRoomName" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Check-in</label>
+                            <input type="datetime-local" id="bookingCheckIn" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Check-out</label>
+                            <input type="datetime-local" id="bookingCheckOut" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Booking Type</label>
+                            <select id="bookingTypeSelect" class="form-select" required>
+                                <option value="HOURLY">Hourly</option>
+                                <option value="DAILY">Daily</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Estimated Price:</strong> <span id="estimatedPrice">Calculating...</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmBookingBtn">Confirm Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Bookings Section -->
+    <section id="bookings-section" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>My Bookings</h2>
+                <button class="btn btn-primary" id="refreshBookingsBtn">
+                    <i class="fas fa-sync-alt me-2"></i>Refresh
+                </button>
+            </div>
+            <div id="bookingsContainer" class="row g-4">
+                <div class="col-12 text-center text-muted">
+                    <i class="fas fa-calendar fa-3x mb-3"></i>
+                    <p>No bookings yet. Book a room to get started!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="py-5 bg-body">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Exclusive Offers</h2>
+                    <p class="section-subtitle">Unlock special rates and signature experiences when you book directly with us.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="offer-card h-100">
+                        <span class="offer-badge">Best Value</span>
+                        <h5 class="offer-title">Weekend Getaway</h5>
+                        <p class="offer-text">Enjoy a two-night stay with complimentary breakfast and late check-out (subject to availability).</p>
+                        <ul class="offer-list">
+                            <li><i class="fas fa-check"></i> Early check-in on Fridays</li>
+                            <li><i class="fas fa-check"></i> Buffet breakfast for two</li>
+                            <li><i class="fas fa-check"></i> 10% off spa services</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="offer-card h-100">
+                        <span class="offer-badge">Popular</span>
+                        <h5 class="offer-title">Business Traveler</h5>
+                        <p class="offer-text">Designed for corporate stays with flexible check-in and dedicated workspace in-room.</p>
+                        <ul class="offer-list">
+                            <li><i class="fas fa-check"></i> High-speed Wi-Fi</li>
+                            <li><i class="fas fa-check"></i> Airport pick-up on request</li>
+                            <li><i class="fas fa-check"></i> Priority check-in desk</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="offer-card h-100">
+                        <span class="offer-badge">Limited</span>
+                        <h5 class="offer-title">Celebrate in Style</h5>
+                        <p class="offer-text">Perfect for anniversaries and special moments with curated décor and bespoke amenities.</p>
+                        <ul class="offer-list">
+                            <li><i class="fas fa-check"></i> Room upgrade subject to availability</li>
+                            <li><i class="fas fa-check"></i> Celebration cake &amp; welcome amenities</li>
+                            <li><i class="fas fa-check"></i> Late check-out until 2 PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" id="loginUsername" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" required>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-muted">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign up</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="loginSubmitBtn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" id="signupUsername" class="form-control" required>
+                            <small class="text-muted">Required. 150 characters or fewer.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="signupEmail" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="signupPassword" class="form-control" required minlength="8">
+                            <small class="text-muted">Minimum 8 characters.</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" id="signupPasswordConfirm" class="form-control" required minlength="8">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-muted">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="signupSubmitBtn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-md-6">
+                    <h5 class="footer-brand"><i class="fas fa-hotel me-2"></i>Hotel Booking</h5>
+                    <p class="footer-text">A contemporary luxury stay inspired by the heritage and warmth of grand Indian hospitality.</p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="footer-heading">Explore</h6>
+                    <ul class="footer-links">
+                        <li><a href="#search-section">Rooms &amp; Rates</a></li>
+                        <li><a href="#highlights">Experiences</a></li>
+                        <li><a href="#offers">Offers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <h6 class="footer-heading">Need Help?</h6>
+                    <p class="footer-text mb-1"><i class="fas fa-phone me-2"></i>+91-000-000-0000</p>
+                    <p class="footer-text mb-0"><i class="fas fa-envelope me-2"></i>reservations@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center mt-4">
+                <small>&copy; <span id="currentYear"></span> Hotel Booking. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
