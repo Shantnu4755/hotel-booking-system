@@ -1,16 +1,19 @@
 """
 WSGI config for hotel_booking project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/6.0/howto/deployment/wsgi/
 """
 
 import os
+import sys
+
+# ✅ Absolute path where manage.py exists
+PROJECT_PATH = '/home/Shantnu4755/hotel_booking_system'
+
+if PROJECT_PATH not in sys.path:
+    sys.path.insert(0, PROJECT_PATH)
+
+# ✅ Django settings module
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hotel_booking.settings'
 
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hotel_booking.settings')
 
 application = get_wsgi_application()
